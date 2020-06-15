@@ -12,3 +12,7 @@ So, think about that, generate hooking code for every different class and differ
 ## Something that not perfect on original plugin
 During plagiarism code from StringFog, I have found that it will replace some empty string("") with null.<br>
 That's not right and will cause some exceptions, maybe I just use his code with wrong approach, anyway, I fixed it on my code.
+
+## Screenshot
+![Alt text](https://github.com/wizdzz/StringMist/blob/master/jadx.png?raw=true)
+![Alt text](https://github.com/wizdzz/StringMist/blob/master/JEB.png?raw=true)
