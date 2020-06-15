@@ -1,3 +1,5 @@
+[中文](https://github.com/wizdzz/StringMist/blob/master/README_zhcn.md)
+
 # StringMist
 Gradle plugin for encrypt string constant on Java<br>
 
