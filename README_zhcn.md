@@ -6,3 +6,31 @@
 
 声明：
 大部分代码都是直接抄的
+
+使用方法：
+1. 构建生成 StringMist 并将其添加到你本地的 maven 仓库；
+2. 在 Project 的 build.gradle 中添加仓库和依赖；
+```gradle
+buildscript {
+    repositories {
+        maven{
+            url uri('C:\\Users\\Administrator\\.m2\\repository')
+        }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.wizd:stringmist:1.0'
+    }
+}
+```
+3. 在 Module 的 build.gradle 中应用插件和配置属性；
+```gradle
+apply plugin: 'stringmist'
+
+stringmist {
+    nativeInterfaceClass = 'com.wizd.usegradleplugin.NativeInterface'
+    excludeClasses = []
+    includeJars = ['nanohttpd.jar', 'okhttp.jar']
+}
+```
