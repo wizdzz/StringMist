@@ -16,7 +16,7 @@ During plagiarism code from StringFog, I have found that it will replace some em
 That's not right and will cause some exceptions, maybe I just use his code with wrong approach, anyway, I fixed it on my code.<br>
 
 ## Shortage
-Can not custome encrypt algorithm, now is blowfish on native and simple XOR on Java, note the init box of blowfish is unstandard.
+Can not customize encrypt algorithm unless you modify the source code of plugin, now is blowfish on native and simple XOR on Java, note the init box of blowfish is unstandard.
 
 ## Usage
 1. Build and add StringMit to your local maven repository;
