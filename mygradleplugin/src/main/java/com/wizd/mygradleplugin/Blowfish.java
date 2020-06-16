@@ -1,4 +1,4 @@
-package com.zhc.test;
+package com.wizd.mygradleplugin;
 
 import java.security.MessageDigest;
 import java.util.Random;
@@ -182,7 +182,7 @@ public class Blowfish {
                 0xb4e1cfed, 0x3c437e93, 0xbc7c9045, 0xf14c7f99,
                 0x44c19947, 0xb3913cf7, 0x401f4e4, 0x454efc13,
                 0x333940d4, 0x71574e39, 0xc454fec3, 0xf4933d7e,
-                0xd95744f, 0x744eb354, 0x714bcd54, 0x44154cee,
+                0xd95744f,  0x744eb354, 0x714bcd54, 0x44154cee,
                 0x7b54c41d, 0xc45c59b5, 0x9c30d539, 0x4cf43013,
                 0xc5d1b043, 0x443045f0, 0xcc417914, 0xb4db34ef,
                 0x4e79dcb0, 0x303c140e, 0x3c9e0e4b, 0xb01e4c3e,
@@ -515,12 +515,24 @@ public class Blowfish {
         digest.reset();
     }
 
+    public Blowfish(byte[] password) {
+        m_bfish = new BlowfishCBC(password, 0L);
+    }
+
     public String encryptString(String sPlainText) {
         long lCBCIV;
         synchronized (m_rndGen) {
             lCBCIV = m_rndGen.nextLong();
         }
         return encStr(sPlainText, lCBCIV);
+    }
+
+    public byte[] encryptBytes(byte[] sPlain) {
+        long lCBCIV;
+        synchronized (m_rndGen) {
+            lCBCIV = m_rndGen.nextLong();
+        }
+        return encBytes(sPlain, lCBCIV);
     }
 
     private String encStr(String sPlainText, long lNewCBCIV) {
@@ -542,6 +554,27 @@ public class Blowfish {
         byte newCBCIV[] = new byte[8];
         longToByteArray(lNewCBCIV, newCBCIV, 0);
         return bytesToBinHex(newCBCIV, 0, 8) + bytesToBinHex(buf, 0, buf.length);
+    }
+
+    private byte[] encBytes(byte[] sPlain, long lNewCBCIV) {
+        int nStrLen = sPlain.length;
+        byte[] buf = new byte[(nStrLen & -8) + 8 + 8];
+        int nPos = nStrLen;
+        System.arraycopy(sPlain, 0, buf, 0, nStrLen);
+
+        byte bPadVal = (byte) (sPlain[nStrLen-1] ^ 0xCC);
+        while (nPos < buf.length) {
+            buf[nPos++] = bPadVal;
+        }
+        m_bfish.setCBCIV(lNewCBCIV);
+        m_bfish.encrypt(buf);
+        byte[] newCBCIV = new byte[8];
+        longToByteArray(lNewCBCIV, newCBCIV, 0);
+
+        byte[] ret = new byte[8 + buf.length];
+        longToByteArray(lNewCBCIV, ret, 0);
+        System.arraycopy(buf, 0, ret, 8, buf.length);
+        return ret;
     }
 
     public String decryptString(String sCipherText) {
