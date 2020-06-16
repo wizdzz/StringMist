@@ -15,6 +15,9 @@ So, think about that, generate hooking code for every different class and differ
 During plagiarism code from StringFog, I have found that it will replace some empty string("") with null.<br>
 That's not right and will cause some exceptions, maybe I just use his code with wrong approach, anyway, I fixed it on my code.<br>
 
+## Shortage
+Can not custome encrypt algorithm, now is blowfish on native and simple XOR on Java, note the init box of blowfish is unstandard.
+
 ## Usage
 1. Build and add StringMit to your local maven repository;
 2. Add local repositories and dependencies on target project(Project's build.gradle);
