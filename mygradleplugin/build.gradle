@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies{
+    // gradle sdk
+    compile gradleApi()
+    // groovy sdk
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:3.4.2'
+}
+
+repositories{
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = 'com.wizd'
+            pom.artifactId = 'stringmist'
+            pom.version = 1.0
+            // maven本地仓库的目录
+            repository(url: uri('C:\\Users\\Administrator\\.m2\\repository'))
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
