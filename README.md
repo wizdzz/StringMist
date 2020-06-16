@@ -13,7 +13,35 @@ So, think about that, generate hooking code for every different class and differ
 
 ## Something that not perfect on original plugin
 During plagiarism code from StringFog, I have found that it will replace some empty string("") with null.<br>
-That's not right and will cause some exceptions, maybe I just use his code with wrong approach, anyway, I fixed it on my code.
+That's not right and will cause some exceptions, maybe I just use his code with wrong approach, anyway, I fixed it on my code.<br>
+
+## Usage
+1. Build and add StringMit to your local maven repository;
+2. Add local repositories and dependencies on target project(Project's build.gradle);
+```gradle
+buildscript {
+    repositories {
+        maven{
+            url uri('C:\\Users\\Administrator\\.m2\\repository')
+        }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.wizd:stringmist:1.0'
+    }
+}
+```
+3. Apply plugin and set properties on Module's build.gradle;
+```gradle
+apply plugin: 'stringmist'
+
+stringmist {
+    nativeInterfaceClass = 'com.wizd.usegradleplugin.NativeInterface'
+    excludeClasses = []
+    includeJars = ['nanohttpd.jar', 'okhttp.jar']
+}
+```
 
 ## Screenshot
 ![Alt text](https://github.com/wizdzz/StringMist/blob/master/jadx.png?raw=true)
