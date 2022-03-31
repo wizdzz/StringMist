@@ -1,22 +1,22 @@
 [中文](https://github.com/wizdzz/StringMist/blob/master/README_zhcn.md)
 
 # StringMist
-Gradle plugin for encrypt string constant on Java<br>
+Gradle plugin for encrypting string constant on Java<br>
 
-The plugin seems like [StringFog](https://github.com/MegatronKing/StringFog), but I have added some thing interesting.<br>
-(Actually there are some code I just copy from StringFog directly.)<br>
+The plugin seems like [StringFog](https://github.com/MegatronKing/StringFog), but I have added some interesting things.<br>
+(Actually much of the code is just copy from StringFog directly.)<br>
 
 ## Funny stuff
-This plugin generate a strDec method for every Java class for preventing the reverse engineer hook the only strDec method on the original plugin conveniently.<br>
-In the original one, it is easy to get the ciphertext and plaintext, I think that is pretty ... weak, not bring an enough challenge for the hacker, and it will be decrypted automatically on new version of JEB.<br>
-So, think about that, generate hooking code for every different class and different method, seems like shitty and disgusting, right ?<br>
+This plugin generates a strDec method for every Java class to prevent the reverse engineer hooking the only strDec method on the original plugin.<br>
+In the original one, it is easy to get the ciphertext and plaintext by that, I think that is one of the shortcoming. Furthermore, on the new version of JEB, it will be decrypted automatically and show the plaintext directly there.<br>
+So, generate hooking code for every class and comming with different method names, seems like shitty and disgusting. And that is exactly what we want.<br>
 
-## Something that not perfect on original plugin
-During plagiarism code from StringFog, I have found that it will replace some empty string("") with null.<br>
-That's not right and will cause some exceptions, maybe I just use his code with wrong approach, anyway, I fixed it on my code.<br>
+## Something that is not perfect on original plugin
+During plagiarisming code from StringFog, I have found that it will replace some empty string("") with null.<br>
+That's not right and will cause some exceptions, maybe I just use it wrongly or I didn't know and didn't configure some setting. Anyway, I fixed it.<br>
 
-## Shortage
-Can not customize encrypt algorithm unless you modify the source code of plugin, now is blowfish on native and simple XOR on Java, please note the init box of blowfish is unstandard.
+## Shortcoming of this one
+This one is not able to customize encrypt algorithm unless you modify the source code, now I use blowfish on native and simple XOR on Java, please note the init box of blowfish is unstandard.
 
 ## Usage
 1. Build and add StringMit to your local maven repository;
