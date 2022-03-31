@@ -9,7 +9,7 @@ The plugin seems like [StringFog](https://github.com/MegatronKing/StringFog), bu
 ## Funny stuff
 This plugin generates a strDec method for every Java class to prevent the reverse engineer hooking the only strDec method on the original plugin.<br>
 In the original one, it is easy to get the ciphertext and plaintext by that, I think that is one of the shortcoming. Furthermore, on the new version of JEB, it will be decrypted automatically and show the plaintext directly there.<br>
-So, generate hooking code for every class and comming with different method names, seems like shitty and disgusting. And that is exactly what we want.<br>
+So, generating hooking code for every class and comming with different method names, seems like shitty and disgusting. And that is exactly what we want.<br>
 
 ## Something that is not perfect on original plugin
 During plagiarisming code from StringFog, I have found that it will replace some empty string("") with null.<br>
